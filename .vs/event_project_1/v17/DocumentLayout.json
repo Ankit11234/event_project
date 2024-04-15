@@ -1,0 +1,194 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|d:\\internship\\calendar_project\\event_project_1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|d:\\internship\\calendar_project\\event_project_1\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|solutionrelative:models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|d:\\internship\\calendar_project\\event_project_1\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|d:\\internship\\calendar_project\\event_project_1\\views\\events\\fullcalendar1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|solutionrelative:views\\events\\fullcalendar1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|d:\\internship\\calendar_project\\event_project_1\\views\\events\\addroom.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|solutionrelative:views\\events\\addroom.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|d:\\internship\\calendar_project\\event_project_1\\views\\events\\rooms.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|solutionrelative:views\\events\\rooms.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|d:\\internship\\calendar_project\\event_project_1\\views\\account\\admin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|solutionrelative:views\\account\\admin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|d:\\internship\\calendar_project\\event_project_1\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|solutionrelative:views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|d:\\internship\\calendar_project\\event_project_1\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|d:\\internship\\calendar_project\\event_project_1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A87053C-CC95-4161-9225-973709D9F4C6}|event_project_1.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Models\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Models\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Models\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Models\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-15T15:13:03.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FullCalendar1.cshtml",
+              "DocumentMoniker": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Events\\FullCalendar1.cshtml",
+              "RelativeDocumentMoniker": "Views\\Events\\FullCalendar1.cshtml",
+              "ToolTip": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Events\\FullCalendar1.cshtml",
+              "RelativeToolTip": "Views\\Events\\FullCalendar1.cshtml",
+              "ViewState": "AQIAAO4AAAAAAAAAAAAAAJQBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-15T15:02:24.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AddRoom.cshtml",
+              "DocumentMoniker": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Events\\AddRoom.cshtml",
+              "RelativeDocumentMoniker": "Views\\Events\\AddRoom.cshtml",
+              "ToolTip": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Events\\AddRoom.cshtml",
+              "RelativeToolTip": "Views\\Events\\AddRoom.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-15T15:02:04.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Rooms.cshtml",
+              "DocumentMoniker": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Events\\Rooms.cshtml",
+              "RelativeDocumentMoniker": "Views\\Events\\Rooms.cshtml",
+              "ToolTip": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Events\\Rooms.cshtml",
+              "RelativeToolTip": "Views\\Events\\Rooms.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-15T15:02:00.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Admin.cshtml",
+              "DocumentMoniker": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Account\\Admin.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Admin.cshtml",
+              "ToolTip": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Account\\Admin.cshtml",
+              "RelativeToolTip": "Views\\Account\\Admin.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADkAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-15T10:51:16.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Register.cshtml",
+              "ToolTip": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "Views\\Account\\Register.cshtml",
+              "ViewState": "AQIAABAAAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-15T09:25:24.323Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAqwBwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-15T09:10:53.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-15T08:40:13.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-15T09:07:11.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\INTERNSHIP\\calendar_project\\event_project_1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-15T08:39:44.771Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

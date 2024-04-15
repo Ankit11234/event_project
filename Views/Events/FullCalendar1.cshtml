@@ -1,0 +1,619 @@
+﻿@model List<event_project_1.ViewModels.EventsRoomsViewModel>
+
+
+<html>
+<head>
+    <meta charset='utf-8' />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@@fullcalendar/rrule@6.1.11/index.global.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" integrity="sha512-4WpSQe8XU6Djt8IPJMGD9Xx9KuYsVCEeitZfMhPi8xdYlVA5hzRitm0Nt1g2AZFS136s29Nq4E4NVvouVAVrBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css" integrity="sha512-d0olNN35C6VLiulAobxYHZiXJmq+vl+BGIgAxQtD5+kqudro/xNMvv2yIHAciGHpExsIbKX3iLg+0B6d0k4+ZA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css" integrity="sha512-8RxmFOVaKQe/xtg6lbscU9DU0IRhURWEuiI0tXevv+lXbAHfkpamD4VKFQRto9WgfOJDwOZ74c/s9Yesv3VvIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css" integrity="sha512-pZlKGs7nEqF4zoG0egeK167l6yovsuL8ap30d07kA5AJUq+WysFlQ02DLXAmN3n0+H3JVz5ni8SJZnrOaYXWBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/regular.min.css" integrity="sha512-TzeemgHmrSO404wTLeBd76DmPp5TjWY/f2SyZC6/3LsutDYMVYfOx2uh894kr0j9UM6x39LFHKTeLn99iz378A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+       <!-- 
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"></script>
+       --> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+
+    <script>
+
+    $(document).ready(function() {
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        function setCustomRecurrenceRequired(required) {
+            $('#recurrenceInterval').prop('required', required);
+            $('#recurrenceFrequency').prop('required', required);
+            $('input[name="recurrenceEndType"]').prop('required', required);
+            $('#endDate').prop('required', required && $('input[name="recurrenceEndType"]:checked').val() === 'endDate');
+            $('#occurrences').prop('required', required && $('input[name="recurrenceEndType"]:checked').val() === 'occurrences');
+        }
+        function setDefaultRecurrence() {
+            $("#Recurrence").val('none');
+            $("#customRecurrence").hide(); 
+        }
+
+        $('#Recurrence').change(function() {
+             if ($(this).val() === 'custom') {
+                $('#customRecurrence').show();
+                setCustomRecurrenceRequired(true); 
+            } else {
+                $('#customRecurrence').hide();
+                setCustomRecurrenceRequired(false); 
+            }
+        });
+        $('input[name="recurrenceEndType"]').change(function() {
+            setCustomRecurrenceRequired($('#Recurrence').val() === 'custom'); 
+        });
+
+        function showModal(dateStr) {
+           // console.log("inside the showMOdal fucntion");
+             
+            $('#myModal').modal('show');
+            $('#myModal').on('shown.bs.modal', function () {
+                $("#StartTime").val(dateStr + "T00:00");
+                $("#EndTime").val('');
+                $("#EventId").val('');
+                $("#Title").val('');
+                $("#Description").val('');
+                $("#submit_event").val("Add Event");
+                $(".modal-title").text("Add New Event");
+                setDefaultRecurrence(); 
+
+            });
+
+        }
+
+        
+        span.onclick = function() {
+           
+             $("#submit_event").val("Add Event");
+             $(".modal-title").text("Add New Event");
+             $('#myModal').modal('hide'); 
+
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                 $("#submit_event").val("Add Event");
+                 $(".modal-title").text("Add New Event");
+                 modal.style.display = "none";
+            }
+        }
+
+
+        $("#delete_event").click(function(){
+             var eventId = $("#EventId").val();
+             if (eventId) {
+                 $("#eventForm").attr("action", "/Events/DeleteEvent");
+                 $("#eventForm").unbind('submit').submit();
+
+             }
+
+         })
+
+  
+
+        $('#download').click(function(){
+            
+            var startDate = new Date(calendar.view.activeStart);
+            var endDate = new Date(calendar.view.activeEnd);
+            var startDay = startDate.getDate(); 
+
+            var year = startDate.getFullYear();
+            var month;
+
+            if (startDay == 1) {
+                month = startDate.getMonth() + 1;
+            } else {
+                month = startDate.getMonth() + 2;
+                if (month > 12) {
+                    month = 1; 
+                    year++;  
+                }
+            }
+
+            var lastDay = new Date(year, month, 0).getDate();
+            var start = year + '-' + ('0' + month).slice(-2) + '-01'; 
+            var end = year + '-' + ('0' + month).slice(-2) + '-' + lastDay; 
+            var eventsData = [];
+
+            calendar.getEvents().forEach(function(event) {
+                var eventStart = moment(event.start);
+                var eventEnd = moment(event.end);
+                if (eventStart.isSameOrAfter(start) && eventEnd.isSameOrBefore(end)) {
+                    eventsData.push({
+                        id: event.id,
+                        title: event.title,
+                        description: event.extendedProps.description,
+                        start: event.start,
+                        end: event.end,
+                        recurrence: event.extendedProps.recurrence
+                    });
+                }
+            });
+
+            if (eventsData.length === 0) {
+                alert("No events in this month");
+                return; 
+            }
+            var doc = new jsPDF();
+           
+            doc.setFontSize(12);
+            doc.setTextColor(30, 30, 30);  
+            doc.setFillColor(220, 220, 220); 
+            doc.rect(0, 0, doc.internal.pageSize.width, 15, 'F');
+            doc.setFontSize(16);
+            doc.setFontStyle('bold');
+            doc.setTextColor(0, 0, 139);
+            doc.text("Events Data for " + month + "/" + year, 10, 10);
+
+            var y = 20;
+            var rowColor = 250;
+            var topMargin = 30;
+            eventsData.forEach(function(event,i) {
+                  if (i % 2 === 0) {
+                    rowColor = 250;
+                  } else {
+                    rowColor = 230;
+                  }
+                  doc.setFillColor(rowColor, rowColor, rowColor);
+                  doc.rect(10, y - 2, doc.internal.pageSize.width - 20, 42, 'F'); 
+
+                var text = "Title: " + event.title + "\nDescription: " + event.description + "\nStart: " + event.start + "\nEnd: " + event.end + "\nRecurrence: " + event.recurrence + "\n\n";
+                doc.setFontSize(12);
+                doc.setTextColor(30, 30, 30); 
+                doc.text(text, 20, y+10);
+                y += 40; 
+            });
+
+            doc.setFont("helvetica", "italic");
+            doc.setFontSize(10);
+            doc.setTextColor(100,100,100);
+            doc.text("Generated on: " + new Date().toLocaleString(), 10, doc.internal.pageSize.height - 10);
+
+            doc.save('events_data_' + year + '-' + ('0' + month).slice(-2) + '.pdf');
+           
+        });
+         
+        $("#eventForm").submit(function(e) {
+            e.preventDefault(); 
+            saveEvent();
+        });
+
+         function saveEvent() {
+
+            var title = $("#Title").val();
+            var startDateTime = $("#StartTime").val();
+            var endDateTime = $("#EndTime").val();
+            var description = $("#Description").val(); 
+            var eventId = $("#EventId").val();
+            var recurrence = $("#Recurrence").val();
+            var roomId = $("#RoomId").val();
+
+
+            if (recurrence === 'custom') {
+
+               var recurrenceInterval = $("#recurrenceInterval").val() || 1;
+               var  recurrenceFrequency = $("#recurrenceFrequency").val() || 'daily';
+               var  recurrenceEndType = $("input[name='recurrenceEndType']:checked").val() || 'occurrences';
+               var endDate = recurrenceEndType === 'endDate' ? $("#endDate").val(): $("#endDate").val('null');
+               var  occurrences = recurrenceEndType === 'occurrences' ? $("#occurrences").val(): $("#occurrences").val('null');
+               
+                if (eventId) {
+                    //console.log("inside custom updateevvent",eventId);
+                    console.log("RoomId is ", roomId);
+                    $("#eventForm").attr("action", "/Events/UpdateEvent");
+
+                } else {
+                    console.log("RoomId EVENTID not present.. is ", roomId);
+
+                    $("#eventForm").attr("action", "/Events/FullCalendar23");
+                }
+
+            } else {
+                if (eventId && recurrence !== 'custom') {
+                    console.log("RoomId is ", roomId);
+
+                    $("#eventForm").attr("action", "/Events/UpdateEvent");
+                } else {
+
+                    console.log("RoomId is ", roomId);
+
+                    $("#eventForm").attr("action", "/Events/AddEvent");
+                }
+            }
+
+            $("#eventForm").unbind('submit').submit();
+         }
+        
+        function handleEditButtonClick(info) {
+            $('#myModal').off('shown.bs.modal');
+            $('#myModal').off('hidden.bs.modal');
+            var startDateTime = info.event.startStr.replace(" ", "T"); 
+            var endDateTime = info.event.endStr.replace(" ", "T");
+            startDateTime = startDateTime.split('+')[0]; 
+            endDateTime = endDateTime.split('+')[0]; 
+            $("#EventId").val(info.event.id);
+            console.log("info is ", info);
+            console.log("info.event is ", info.event);
+
+            $('#myModal').on('shown.bs.modal', function () {
+                $("#submit_event").val("Update Event");
+                $(".modal-title").text("Update Event");
+                $("#StartTime").val(startDateTime);
+                $("#EndTime").val(endDateTime);
+                $("#EventId").val(info.event.id);
+                $("#Title").val(info.event.title);
+                $("#Description").val(info.event.extendedProps.description);
+                $("#Recurrence").val(info.event.extendedProps.recurrence); 
+                var roomId = info.event.extendedProps.resourceId;
+                $("#RoomId").val(roomId);
+
+                var recurrence = $("#Recurrence").val();
+                if (recurrence === 'custom') {
+                    $('#customRecurrence').show();
+                    $("#recurrenceInterval").val(info.event.source.internalEventSource.meta[0].rrule.interval);
+                    $("#recurrenceFrequency").val(info.event.source.internalEventSource.meta[0].rrule.freq);
+                    var recurrenceEndType = info.event.source.internalEventSource.meta[0].recurrenceendtype;
+                    $("input[name='recurrenceEndType'][value='" + recurrenceEndType + "']").prop('checked', true);
+                        if (recurrenceEndType === "occurrences") {
+
+                        $("#occurrences").val(info.event.source.internalEventSource.meta[0].rrule.count);
+                    } else {
+                        $("#endDate").val(info.event.source.internalEventSource.meta[0].rrule.until);
+
+                    }
+                    
+                }  
+
+            });
+            $('#myModal').on('hidden.bs.modal', function () {
+                $("#StartTime").val('');
+                $("#EndTime").val('');
+                $("#EventId").val('');
+                $("#Title").val('');
+                $("#Description").val('');
+                $("#Recurrence").val('None');
+                $("#submit_event").val("Add Event");
+                $(".modal-title").text("Add New Event");
+            });
+
+            $('#myModal').modal('show');
+        }
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            c = color;
+            return color;
+        }
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            views: {
+              dayGridMonth: { 
+                 dayHeaderFormat: { weekday: 'long' } 
+              },
+              timeGridWeek: {
+                dayHeaderFormat: { month: 'numeric', day: 'numeric', year: 'numeric' },
+                allDaySlot: false
+              }
+            },
+            eventClick: handleEditButtonClick,
+            eventDidMount: function(info) {
+               
+                var textColorElements = info.el.getElementsByClassName('fc-event-title');
+                var eventColor = getRandomColor();
+                info.el.style.backgroundColor = eventColor;
+                info.el.style.borderColor = eventColor;
+                 if (calendar.view.type === 'timeGridWeek') {
+                  
+                    info.el.style.border = "1px solid darkgray";
+                    info.el.style.backgroundColor = "#F8F8F8";
+                    info.el.style.borderLeftColor = eventColor;
+                    info.el.style.borderLeftWidth = 'thick';
+                    for (var i = 0; i < textColorElements.length; i++) {
+                        textColorElements[i].style.color = 'black';
+                    }
+
+                }
+            },
+            headerToolbar: {
+                right: 'prev,next today',
+                center: 'title',
+                left: 'dayGridMonth,timeGridWeek,timeGridDay',
+            },
+            buttonText: {
+                today: 'Today' ,
+                month: 'Month', 
+                week: 'Week',   
+                day: 'Day' 
+            },
+            dateClick: function(info) {
+                showModal(info.dateStr);
+            },
+            events: [
+                @foreach (var eve in Model)
+                {
+                 @foreach (var e in eve.Eventss)
+                {
+                    <text>{
+                        id : '@e.EventId',
+                        resourceId: '@e.RoomId',
+                        title: '@e.Title',
+                        start: '@e.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
+                        end: '@e.EndTime.ToString("yyyy-MM-ddTHH:mm:ss")',
+                        description: '@e.Description',
+                        recurrence: '@e.Recurrence',
+                        recurrenceendtype: '@e.RecurrenceEndType',
+                       // color: getRandomColor(),
+                        @if (!string.IsNullOrEmpty(e.Recurrence) && e.Recurrence.ToLower() == "custom")
+                        {
+                            <text>rrule: {
+                                dtstart: '@e.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
+                                freq: '@e.RecurrenceFrequency',
+                                interval: @e.RecurrenceInterval,
+                                @if (!string.IsNullOrEmpty(e.RecurrenceEndType))
+                                {
+                                    if (e.RecurrenceEndType.ToLower() == "enddate" && e.EndDate!=null)
+                                    {
+                                        <text>until: '@e.EndDate?.ToString("yyyy-MM-ddTHH:mm:ss")',</text>
+                                    }
+                                    else if (e.RecurrenceEndType.ToLower() == "occurrences" && e.Occurrences!=null)
+                                    {
+                                        <text>count: '@e.Occurrences',</text>
+                                    }
+                                }
+                            },</text>
+                          
+                        }
+                        @if (!string.IsNullOrEmpty(e.Recurrence) && e.Recurrence.ToLower() != "none" && e.Recurrence.ToLower()!="custom")
+                        {
+                            <text>rrule: {
+                                dtstart: '@e.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")',
+                                freq: '@e.Recurrence',
+                                interval: 1,
+                            },</text>
+                        }
+                        duration: '02:00'
+                    }</text>
+                    @if (e != null)
+                    {
+                        <text>,</text>
+                    }
+                }
+                }
+            ]
+        });
+
+        calendar.render();
+     
+
+
+});
+</script>
+
+<style>
+        body,#calendar{
+            font-family: sans-serif;
+            text-decoration:none;
+
+        }
+    
+        #calendar .fc-scrollgrid-section-body,.fc-timegrid-divider{
+           
+        }
+        #calendar .fc-col-header-cell-cushion{
+            color:black;
+           font-weight: 500;
+           text-decoration:none;
+           font-family:sans-serif;
+        }
+
+        #calendar .fc-daygrid-day-number{
+            color:black;
+           text-decoration:none;
+
+        }
+
+      
+        #calendar .fc-event-time{
+            display:none;
+        }
+
+        
+        #calendar .fc-event{
+            margin:0px;
+        }
+
+        #calendar .fc-event-title{
+            color:white;
+            margin: 0px 2px;
+        }
+        #calendar .fc-daygrid-event-dot{
+          display:none;
+        }
+
+        #calendar .fc-today-button {
+            background-color: #FFFFFF; 
+            color: #000;
+        }
+      
+        #calendar .fc-dayGridMonth-button {
+              font-size: 14px;
+              color: #666;
+              text-align: center;
+              background-color:#FFFFFF;
+        }
+
+      
+        #calendar .fc-timeGridWeek-button {
+            font-size: 14px;
+              color: #666;
+              text-align: center;
+              background-color:#FFFFFF;
+        }
+
+        
+       #calendar  .fc-timeGridDay-button {
+              font-size: 14px;
+              color: #666;
+              text-align: center;
+              background-color:#FFFFFF;
+        }
+
+       
+        
+        #calendar .fc-next-button {
+            background-color: #ffffff; 
+            border: 1px solid #ccc; 
+            color: #333;
+            border-radius: 4px; 
+        }
+
+         #calendar .fc-prev-button {
+           
+            background-color: #ffffff; 
+            border: 1px solid #ccc;
+            color: #333;
+             border-radius: 4px; 
+         }
+        
+
+        #calendar .fc-dayGridMonth-button.fc-button-active {
+           background-color: #F0EDE6; 
+            color: black;
+        }
+
+        #calendar .fc-timeGridWeek-button.fc-button-active {
+            background-color: #F0EDE6; 
+            color: black;
+        }
+
+        #calendar .fc-timeGridDay-button.fc-button-active {
+            background-color: #F0EDE6; 
+            color: black;
+        }
+</style>
+
+
+</head>
+<body>
+    <div id='calendar' class="custom-calendar"></div>
+
+        <button class="btn btn-primary my-2" id="download">Download Events PDF</button>
+
+ 
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Add New Event</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <form id="eventForm" method="post">
+
+                    @Html.Hidden("EventId", "", new { id = "EventId" })
+
+                    <div class="form-group">
+                        <label for="Title">Event:</label>
+                        <input type="text" id="Title" name="Title" class="form-control" required>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="StartTime">Start Date and Time:</label>
+                        <input type="datetime-local" id="StartTime" name="StartTime" class="form-control" required>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="EndTime">End Date and Time:</label>
+                        <input type="datetime-local" id="EndTime" name="EndTime" class="form-control" required>
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="Description">Description:</label>
+                        <textarea id="Description" name="Description" class="form-control" rows="3" required></textarea>
+                    </div>
+                        @if (User.IsInRole("Admin"))
+                        {
+
+                            <div class="col-md-6">
+                               <div class="form-group">
+                                <label for="RoomId">Select Room:</label>
+                                <select class="form-control" id="RoomId" name="RoomId">
+                                    @foreach (var viewModel in Model)
+                                    {
+                                        foreach (var room in viewModel.Roomss)
+                                        {
+                                            <option value="@room.room_id">@room.room_name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            </div>
+                                                   
+                        }
+                    <div class="form-group mt-2">
+                        <label for="Recurrence">Recurrence:</label>
+                        <select id="Recurrence" name="Recurrence" class="form-control">
+                            <option value="none" selected>None</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="yearly">Yearly</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                   <div id="customRecurrence" class="form-group mt-2" style="display: none;">
+                        <label for="CustomRecurrence">Custom Recurrence:</label>
+                        <div>
+                            <input type="number" id="recurrenceInterval" min="0" name="recurrenceInterval" class="form-control" placeholder="Interval">
+                            <select id="recurrenceFrequency" name="recurrenceFrequency" class="form-control">
+                                <option value="daily" selected>Day(s)</option>
+                                <option value="weekly">Week(s)</option>
+                                <option value="monthly">Month(s)</option>
+                                <option value="yearly">Year(s)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="recurrenceEndType">End Recurrence:</label><br>
+                            <input type="radio" id="recurrenceEndByDate" name="recurrenceEndType" value="endDate">
+                            <label for="recurrenceEndByDate">End Date:</label>
+                            <input type="datetime-local" id="endDate" name="endDate" class="form-control">
+                            <br>
+                            <input type="radio" id="recurrenceEndByOccurrences" name="recurrenceEndType" value="occurrences">
+                            <label for="recurrenceEndByOccurrences">After Occurrences:</label>
+                            <input type="number" min="0" id="occurrences" name="occurrences" class="form-control">
+                        </div>
+                   </div>
+                   <div class="row justify-content-between mt-3">
+                        <div class="col-auto">
+                            <input type="submit" id="submit_event" value="Add Event" class="btn btn-primary">
+                        </div>
+                        <div class="col-auto">
+                            <input type="submit" id="delete_event" value="Delete Event" class="btn btn-danger">
+                        </div>
+                    </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</body>
+</html>

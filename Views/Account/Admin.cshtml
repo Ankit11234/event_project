@@ -1,0 +1,64 @@
+﻿@model List<event_project_1.Models.User>
+
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<h1>Manage Users</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Permission</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Username</td>
+                    <td>@user.Role</td>
+                    <td>
+                        <input type="checkbox" id="adminOverride_@user.Id" @(user.AdminOverride ? "checked" : "") />
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" onclick="savePermission(@user.Id)">Save</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        function savePermission(userId) {
+            var adminOverride = document.getElementById("adminOverride_" + userId).checked;
+
+            // Send form post to save permission
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "/Account/SavePermission");
+
+            var userIdField = document.createElement("input");
+            userIdField.setAttribute("type", "hidden");
+            userIdField.setAttribute("name", "userId");
+            userIdField.setAttribute("value", userId);
+            form.appendChild(userIdField);
+
+            var adminOverrideField = document.createElement("input");
+            adminOverrideField.setAttribute("type", "hidden");
+            adminOverrideField.setAttribute("name", "adminOverride");
+            adminOverrideField.setAttribute("value", adminOverride);
+            form.appendChild(adminOverrideField);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+}
